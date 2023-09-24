@@ -290,7 +290,7 @@ function compare_words(word) {
           }
         } else {
           dark_letters.push(word[i]);
-          alert(dark_letters);
+          // alert(dark_letters);
           continue;
         }
       }
