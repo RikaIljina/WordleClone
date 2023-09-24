@@ -43,6 +43,10 @@ game_started = false;
 last_active_cell_ix = 0;
 active_row = [];
 row_index = 1;
+result_letters = [];
+yellow_letters = [];
+green_letters = [];
+dark_letters = [];
 forbidden_l = "";
 // const body = document.querySelector('body');
 // body.onLoad = start;
@@ -199,6 +203,7 @@ function compare_words(word) {
       grey_cell = "background-color: rgb(214, 212, 208)";
       yellow_cell = "background-color: yellow";
       green_cell = "background-color: rgb(68, 185, 66)";
+      dark_grey_cell = "background-color: #5D6262";
       word_array = [
         ["", 0, grey_cell],
         ["", 1, grey_cell],
@@ -210,15 +215,17 @@ function compare_words(word) {
         word_array[i][0] = word[i];
         // alert(word_array[i][0] + word[i]);
         if (todays_word[i] == word[i]) {
-          word_array[i][1] = green_cell;
+          word_array[i][2] = green_cell;
+          green_letters.push(word[i]);
         }
       }
       for (i = 0; i < 5; i++) {
         green_cell_found = false;
         green_cell_counter = 0;
         if (todays_word.includes(word[i])) {
-          if (word.count(word[i]) == 1 && word_array[i][1] != green_cell) {
-            word_array[i][1] = yellow_cell;
+          if (word.count(word[i]) == 1 && word_array[i][2] != green_cell) {
+            word_array[i][2] = yellow_cell;
+            yellow_letters.push(word[i]);
           } else if (
             word.count(word[i]) > 1 &&
             todays_word.count(word[i]) == 1
@@ -226,7 +233,7 @@ function compare_words(word) {
             for (j = 0; j < 5; j++) {
               if (
                 word_array[j][0] == word[i] &&
-                word_array[j][1] == green_cell
+                word_array[j][2] == green_cell
               ) {
                 green_cell_found = true;
                 break;
@@ -238,11 +245,11 @@ function compare_words(word) {
               for (j = 0; j < 5; j++) {
                 if (
                   word_array[j][0] == word[i] &&
-                  word_array[j][1] == yellow_cell
+                  word_array[j][2] == yellow_cell
                 ) {
-                  break;
+                  // break;     // CHECK WHY!!!
                 } else {
-                  word_array[j][1] = yellow_cell;
+                  word_array[j][2] = yellow_cell;
                   break;
                 }
               }
@@ -255,7 +262,7 @@ function compare_words(word) {
               // find all green cells for this letter and count them
               if (
                 word_array[j][0] == word[i] &&
-                word_array[j][1] == green_cell
+                word_array[j][2] == green_cell
               ) {
                 green_cell_counter += 1;
               } else {
@@ -264,13 +271,13 @@ function compare_words(word) {
             }
             if (word.count(word[i]) == green_cell_counter) {
               continue;
-            } else if (word.count(word[i]) > green_cell_counter) {
+            } else if (word.count(word[i]) > green_cell_counter || green_cell_counter == 0) {  //
               for (j = 0; j < 5; j++) {
                 if (
                   word_array[j][0] == word[i] &&
-                  word_array[j][1] != green_cell
+                  word_array[j][2] != green_cell
                 ) {
-                  word_array[j][1] = yellow_cell;
+                  word_array[j][2] = yellow_cell;
                   break;
                 }
               }
@@ -282,13 +289,27 @@ function compare_words(word) {
             // make exactly one letter yellow
           }
         } else {
+          dark_letters.push(word[i]);
+          alert(dark_letters);
           continue;
         }
       }
 
       for (j=0; j<5; j++) {
-        document.getElementById(word_array[j][0]).style = word_array[j][1];
-      }
+        // alert("letter " + word_array[j][0] + " style " + word_array[j][2]);
+        // alert(inputs[(row_index)*5 - 5 +j]);
+        document.getElementById(inputs[(row_index)*5 - 5 +j]).style = word_array[j][2];
+        }
+       for (j=0; j<dark_letters.length; j++) {
+        // alert("letter " + result_letters[j][0] + " style " + result_letters[j][1]);
+         document.getElementById(dark_letters[j]).style = dark_grey_cell;
+       }
+       for (j=0; j<yellow_letters.length; j++) {
+         document.getElementById(yellow_letters[j]).style = yellow_cell;
+       }
+       for (j=0; j<green_letters.length; j++) {
+         document.getElementById(green_letters[j]).style = green_cell;
+       }
 
       next_row();
       //don't forget to go through array and style all letters! then continue to next row
@@ -342,6 +363,7 @@ function compare_words(word) {
 
    
   }
+}
 }
 String.prototype.count = function (l) {
   //count the number of occurrences of a character in a string
