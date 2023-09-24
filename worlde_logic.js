@@ -215,6 +215,7 @@ function compare_words(word) {
       }
       for (i = 0; i < 5; i++) {
         green_cell_found = false;
+        green_cell_counter = 0;
         if (todays_word.includes(word[i])) {
           if (word.count(word[i]) == 1 && word_array[i][1] != green_cell) {
             word_array[i][1] = yellow_cell;
@@ -250,65 +251,96 @@ function compare_words(word) {
             word.count(word[i]) > 1 &&
             todays_word.count(word[i]) > 1
           ) {
+            for (j = 0; j < 5; j++) {
+              // find all green cells for this letter and count them
+              if (
+                word_array[j][0] == word[i] &&
+                word_array[j][1] == green_cell
+              ) {
+                green_cell_counter += 1;
+              } else {
+                // green_cell_found = false;
+              }
+            }
+            if (word.count(word[i]) == green_cell_counter) {
+              continue;
+            } else if (word.count(word[i]) > green_cell_counter) {
+              for (j = 0; j < 5; j++) {
+                if (
+                  word_array[j][0] == word[i] &&
+                  word_array[j][1] != green_cell
+                ) {
+                  word_array[j][1] = yellow_cell;
+                  break;
+                }
+              }
+            }
             // find all green cells and count them
             // if green cell amount == word count, break
             //  if green cell amount < word count, compare all letters and make one yellow
-            // green_cell_found false OR amount of green cells is smaller than correct letters: 
-            // make exactly one letter yellow 
-            
-          }
-        }
-      }
-      //don't forget to go through array and style all letters! then continue to next row
-//this needs to be commented out
-      for (i = last_active_cell_ix - 4; i <= last_active_cell_ix; i++) {
-        word_ix = i % 5;
-        // var last_letter;
-        if (word[word_ix] == todays_word[word_ix]) {
-          // make green if correct letter
-          document.getElementById(inputs[i]).style =
-            "background-color: rgb(68, 185, 66)";
-          document.getElementById(word[word_ix]).style =
-            "background-color: rgb(68, 185, 66)";
-        } else if (todays_word.includes(word[word_ix])) {
-          //if letter in word, check for doubles
-
-          if (check_double_letter(word, word_ix)) {
-            // if no doubles or doubles in todays word, make yellow
-            document.getElementById(inputs[i]).style =
-              "background-color: yellow";
-            document.getElementById(word[word_ix]).style =
-              "background-color: yellow";
-          } else {
-            // alert("forbidden loop for letter " + word[word_ix]);
-            if (forbidden_l == word[word_ix]) {
-              // if double letter in input word only, check if already yellowed
-              document.getElementById(inputs[i]).style =
-                "background-color: rgb(214, 212, 208)";
-              document.getElementById(word[word_ix]).style =
-                "background-color: rgb(214, 212, 208)";
-              // alert("forb eq");
-            } else {
-              document.getElementById(inputs[i]).style =
-                "background-color: yellow";
-              document.getElementById(word[word_ix]).style =
-                "background-color: yellow";
-              forbidden_l = word[word_ix];
-              // alert("end: forbidden letter " + forbidden_l);
-            }
+            // green_cell_found false OR amount of green cells is smaller than correct letters:
+            // make exactly one letter yellow
           }
         } else {
-          // alert("not included: " + word[word_ix]);
-          document.getElementById(inputs[i]).style =
-            "background-color: rgb(214, 212, 208)";
-          document.getElementById(word[word_ix]).style =
-            "background-color: grey";
+          continue;
         }
-        // last_letter = word[word_ix];
       }
-    }
 
-    next_row();
+      for (j=0; j<5; j++) {
+        document.getElementById(word_array[j][0]).style = word_array[j][1];
+      }
+
+      next_row();
+      //don't forget to go through array and style all letters! then continue to next row
+      //this needs to be commented out
+    //   for (i = last_active_cell_ix - 4; i <= last_active_cell_ix; i++) {
+    //     word_ix = i % 5;
+    //     // var last_letter;
+    //     if (word[word_ix] == todays_word[word_ix]) {
+    //       // make green if correct letter
+    //       document.getElementById(inputs[i]).style =
+    //         "background-color: rgb(68, 185, 66)";
+    //       document.getElementById(word[word_ix]).style =
+    //         "background-color: rgb(68, 185, 66)";
+    //     } else if (todays_word.includes(word[word_ix])) {
+    //       //if letter in word, check for doubles
+
+    //       if (check_double_letter(word, word_ix)) {
+    //         // if no doubles or doubles in todays word, make yellow
+    //         document.getElementById(inputs[i]).style =
+    //           "background-color: yellow";
+    //         document.getElementById(word[word_ix]).style =
+    //           "background-color: yellow";
+    //       } else {
+    //         // alert("forbidden loop for letter " + word[word_ix]);
+    //         if (forbidden_l == word[word_ix]) {
+    //           // if double letter in input word only, check if already yellowed
+    //           document.getElementById(inputs[i]).style =
+    //             "background-color: rgb(214, 212, 208)";
+    //           document.getElementById(word[word_ix]).style =
+    //             "background-color: rgb(214, 212, 208)";
+    //           // alert("forb eq");
+    //         } else {
+    //           document.getElementById(inputs[i]).style =
+    //             "background-color: yellow";
+    //           document.getElementById(word[word_ix]).style =
+    //             "background-color: yellow";
+    //           forbidden_l = word[word_ix];
+    //           // alert("end: forbidden letter " + forbidden_l);
+    //         }
+    //       }
+    //     } else {
+    //       // alert("not included: " + word[word_ix]);
+    //       document.getElementById(inputs[i]).style =
+    //         "background-color: rgb(214, 212, 208)";
+    //       document.getElementById(word[word_ix]).style =
+    //         "background-color: grey";
+    //     }
+    //     // last_letter = word[word_ix];
+    //   }
+    // }
+
+   
   }
 }
 String.prototype.count = function (l) {
