@@ -85,6 +85,7 @@ function restart_row() {
   }
   document.getElementById(active_row[0]).focus();
 }
+
 function l_change(active_cell) {
   if (!game_started) {
     l_input = document.getElementById(active_cell);
@@ -194,6 +195,72 @@ function compare_words(word) {
       game_started = false;
       return;
     } else {
+      // create arrays with all the data first
+      grey_cell = "background-color: rgb(214, 212, 208)";
+      yellow_cell = "background-color: yellow";
+      green_cell = "background-color: rgb(68, 185, 66)";
+      word_array = [
+        ["", 0, grey_cell],
+        ["", 1, grey_cell],
+        ["", 2, grey_cell],
+        ["", 3, grey_cell],
+        ["", 4, grey_cell],
+      ];
+      for (i = 0; i < 5; i++) {
+        word_array[i][0] = word[i];
+        // alert(word_array[i][0] + word[i]);
+        if (todays_word[i] == word[i]) {
+          word_array[i][1] = green_cell;
+        }
+      }
+      for (i = 0; i < 5; i++) {
+        green_cell_found = false;
+        if (todays_word.includes(word[i])) {
+          if (word.count(word[i]) == 1 && word_array[i][1] != green_cell) {
+            word_array[i][1] = yellow_cell;
+          } else if (
+            word.count(word[i]) > 1 &&
+            todays_word.count(word[i]) == 1
+          ) {
+            for (j = 0; j < 5; j++) {
+              if (
+                word_array[j][0] == word[i] &&
+                word_array[j][1] == green_cell
+              ) {
+                green_cell_found = true;
+                break;
+              } else {
+                green_cell_found = false;
+              }
+            }
+            if (green_cell_found == false) {
+              for (j = 0; j < 5; j++) {
+                if (
+                  word_array[j][0] == word[i] &&
+                  word_array[j][1] == yellow_cell
+                ) {
+                  break;
+                } else {
+                  word_array[j][1] = yellow_cell;
+                  break;
+                }
+              }
+            }
+          } else if (
+            word.count(word[i]) > 1 &&
+            todays_word.count(word[i]) > 1
+          ) {
+            // find all green cells and count them
+            // if green cell amount == word count, break
+            //  if green cell amount < word count, compare all letters and make one yellow
+            // green_cell_found false OR amount of green cells is smaller than correct letters: 
+            // make exactly one letter yellow 
+            
+          }
+        }
+      }
+      //don't forget to go through array and style all letters! then continue to next row
+//this needs to be commented out
       for (i = last_active_cell_ix - 4; i <= last_active_cell_ix; i++) {
         word_ix = i % 5;
         // var last_letter;
@@ -274,7 +341,7 @@ function check_double_letter(word, i) {
         }
         //else {forbidden_l = word[i]; alert(forbidden_l); return false; }
       }
-      
+
       return false;
     }
   } else {
