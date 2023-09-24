@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wordle</title>
+    <script src="words.js"/></script>
+    <script src="worlde_logic_copy.js"/></script>
+    
+    <link rel="stylesheet" href="worlde_style.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="buttons-div"><button type="button" id="start-btn" onclick="start()" >Start</button></div>
+        <table class="wordle-table">
+            <tr>
+                <td class="letter-1 delay-1"><input id="l1" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"> </td>
+                <td class="letter-2 delay-2"><input id="l2" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-3 delay-3"><input id="l3" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-4 delay-4"><input id="l4" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-5 delay-5"><input id="l5" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+
+            </tr>
+            <tr>
+                <td class="letter-6"><input id="l6" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"> </td>
+                <td class="letter-7"><input id="l7" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-8"><input id="l8" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-9"><input id="l9" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-10"><input id="l10" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+            </tr>
+            <tr>
+                <td class="letter-11"><input id="l11" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"> </td>
+                <td class="letter-12"><input id="l12" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-13"><input id="l13" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-14"><input id="l14" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-15"><input id="l15" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+            </tr>
+            <tr>
+                <td class="letter-16"><input id="l16" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"> </td>
+                <td class="letter-17"><input id="l17" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-18"><input id="l18" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-19"><input id="l19" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-20"><input id="l20" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+            </tr>
+            <tr>
+                <td class="letter-21"><input id="l21" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"> </td>
+                <td class="letter-22"><input id="l22" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-23"><input id="l23" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-24"><input id="l24" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-25"><input id="l25" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+
+            </tr>
+            <tr>
+                <td class="letter-26"><input id="l26" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"> </td>
+                <td class="letter-27"><input id="l27" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-28"><input id="l28" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-29"><input id="l29" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+                <td class="letter-30"><input id="l30" maxlength="1" onkeydown="l_change(this.getAttribute('id'))"></td>
+            </tr>
+
+
+
+        </table>
+        
+        <p><button type="button" id="check-btn" onclick="check()" >Check</button></p>
+<p class="keyboard">
+    <span id="q">Q</span><span id="w">W</span><span id="e">E</span><span id="r">R</span><span id="t">T</span><span id="z">Z</span><span id="u">U</span><span id="i">I</span><span id="o">O</span><span id="p">P</span>  <br>
+    <span id="a">A</span><span id="s">S</span><span id="d">D</span><span id="f">F</span><span id="g">G</span><span id="h">H</span><span id="j">J</span><span id="k">K</span><span id="l">L</span>  <br>
+    <span id="y">Y</span><span id="x">X</span><span id="c">C</span><span id="v">V</span><span id="b">B</span><span id="n">N</span><span id="m">M</span>
+</p>
+
+    </div>
+</body>
+</html>

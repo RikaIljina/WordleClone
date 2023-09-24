@@ -1,0 +1,31 @@
+wordle clone
+
+html:
+build a grid out of tables? 5x6
+
+js:
+game loop vars: game_started, game_won, game_lost
+
+listen for input in input field 1
+ - once a keystroke has been detected, check whether it's a letter
+  - if yes, display and switch focus to next input
+  - make sure only 5 input fields are active
+
+if enter button has been clicked:
+ - check if the word is valid
+  - if not, delete
+  - if yes, start testing logic:
+    - go through each letter
+    - is the letter equal to the letter in the word at the same position?
+     - yes: make green
+     - no: check if letter in word 
+       - if yes: make yellow
+
+make next 5 input fields active
+
+if two same letters in input word:
+check if lettercount is more than 1 in chosen word
+if yes: proceed as usual
+if no: check if one letter would be green
+      if no: ignore one, make other yellow 
+      if yes: ignore one, make other green
