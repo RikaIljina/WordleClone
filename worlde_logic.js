@@ -184,7 +184,7 @@ function compare_words(word) {
     game_started = false;
     return;
   } else {
-    alert("the word is " + todays_word);
+    //alert("the word is " + todays_word);
     // create arrays with all the data first
     grey_cell = "background-color: rgb(214, 212, 208)";
     yellow_cell = "background-color: yellow";
@@ -234,7 +234,7 @@ function compare_words(word) {
             // find all green cells for this letter and count them
             if (word_array[j][0] == word[i] && word_array[j][2] == green_cell) {
               green_cell_counter += 1;
-              alert(green_cell_counter);
+              //alert(green_cell_counter);
             } else {
               // green_cell_found = false;
             }
@@ -245,7 +245,7 @@ function compare_words(word) {
             word.count(word[i]) > green_cell_counter ||
             green_cell_counter == 0
           ) {
-            alert("green cell is 0"); //
+            //alert("green cell is 0"); //
             for (j = 0; j < 5; j++) {
               if (
                 word_array[j][0] == word[i] &&
