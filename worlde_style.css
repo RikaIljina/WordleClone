@@ -26,11 +26,10 @@ input {
     font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
+    transition: all 0.3s;
 }
 
-.letter-1 {
-    transition: all 0.5s;
-}
+
 
 
 input:focus {
@@ -40,8 +39,8 @@ input:focus {
     caret-color: transparent;
     position: absolute;
     margin-top: -25px;
-    width: 51px;
-    height: 51px;
+    width: 50px;
+    height: 50px;
 }
 
 
