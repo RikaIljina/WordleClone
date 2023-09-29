@@ -130,7 +130,7 @@ function l_change(active_cell) {
         document.getElementById(active_cell).focus();
       }
     });
-   // l_input.addEventListener("keypress", function (event) {} // keypressTODO
+   // l_input.addEventListener("keypress", function (event) {} // keypress TODO
   }
 }
 function check() {
@@ -234,10 +234,7 @@ function compare_words(word) {
             // find all green cells for this letter and count them
             if (word_array[j][0] == word[i] && word_array[j][2] == green_cell) {
               green_cell_counter += 1;
-              //alert(green_cell_counter);
-            } else {
-              // green_cell_found = false;
-            }
+            }  
           }
           if (word.count(word[i]) == green_cell_counter) {
             continue;
@@ -245,7 +242,6 @@ function compare_words(word) {
             word.count(word[i]) > green_cell_counter ||
             green_cell_counter == 0
           ) {
-            //alert("green cell is 0"); //
             for (j = 0; j < 5; j++) {
               if (
                 word_array[j][0] == word[i] &&
