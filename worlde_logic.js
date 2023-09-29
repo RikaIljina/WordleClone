@@ -52,6 +52,10 @@ window.addEventListener("load", start);
 
 function start() {
   game_started = true;
+  result_letters = [];
+yellow_letters = [];
+green_letters = [];
+dark_letters = [];
   todays_word = small_dict[Math.floor(Math.random() * small_dict.length)];
   row_index = 1;
   forbidden_l = "";
